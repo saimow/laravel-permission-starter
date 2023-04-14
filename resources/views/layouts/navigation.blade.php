@@ -25,32 +25,5 @@
             {{ __('Posts') }}
         </a>
     </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.tasks.index') }}">
-            <svg class="nav-icon">
-                <use xlink:href="{{ asset('icons/coreui.svg#cil-task') }}"></use>
-            </svg>
-            {{ __('Tasks') }}
-        </a>
-    </li>
     
-    <li class="nav-item nav-group">
-        <a class="nav-link nav-group-toggle" href="">
-            <svg class="nav-icon">
-                <use xlink:href="{{ asset('icons/coreui.svg#cil-star') }}"></use>
-            </svg>
-            Nav dropdown
-        </a>
-        <ul class="nav-group-items">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('icons/coreui.svg#cil-bug') }}"></use>
-                    </svg>
-                    Nav child
-                </a>
-            </li>
-        </ul>
-    </li>
 </ul>

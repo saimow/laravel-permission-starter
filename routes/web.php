@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\HomeController;
@@ -51,11 +53,9 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::get('/account', [AccountController::class, 'index'])->name('account');
         Route::put('/account', [AccountController::class, 'update'])->name('account');
-
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
     
+        Route::resource('users', UserController::class);
         Route::resource('posts', PostController::class);
-        Route::resource('tasks', TaskController::class);
 
     });
 });
