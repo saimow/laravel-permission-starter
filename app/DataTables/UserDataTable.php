@@ -22,10 +22,18 @@ class UserDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('created_at', function($row){
+            ->setRowId('id')
+            ->editColumn('created_at', function($row) {
                 return $row->created_at->format('d-m-Y H:i:s');
             })
-            ->setRowId('id');
+            ->addColumn('actions', function ($row) {
+                $html = "<div class='d-inline-flex'>";
+                $html .= "<a href=".route('admin.users.edit', $row->id)." class='btn btn-success btn-sm me-1'><i class='bi bi-pencil-fill'></i></a>";
+                $html .= "<button data-id='".$row->id."' type='button' class='btn btn-danger btn-sm delete-confirmation' data-bs-toggle='modal' data-bs-target='#delete-confirmation'><i class='bi bi-trash3-fill'></i></button>";
+                $html .= "</div>";
+                return $html;
+            })
+            ->rawColumns(['actions']);
     }
 
     /**
@@ -47,18 +55,9 @@ class UserDataTable extends DataTable
                     ->minifiedAjax()
                     //->dom('Bfrtip')
                     ->orderBy(3)
-                    ->parameters([
-                        'buttons' => [
-                            'buttons' => [
-                                'reset',
-                                'reload',
-                            ],
-                            'dom' => [
-                                'button' => [
-                                    'className' => 'btn btn-dark',
-                                ]
-                            ]
-                        ]
+                    ->buttons([
+                        Button::make('reset'),
+                        Button::make('reload')
                     ]);
     }
 
@@ -72,6 +71,9 @@ class UserDataTable extends DataTable
             Column::make('name'),
             Column::make('email'),
             Column::make('created_at'),
+            Column::make('actions')
+                ->orderable(false)
+                ->searchable(false),
         ];
     }
 
