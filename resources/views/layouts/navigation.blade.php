@@ -8,13 +8,31 @@
         </a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.users.index') }}">
+    <li class="nav-item nav-group">
+        <a class="nav-link nav-group-toggle" >
             <svg class="nav-icon">
-                <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+                <use xlink:href="{{ asset('icons/coreui.svg#cil-briefcase') }}"></use>
             </svg>
-            {{ __('Users') }}
+            User Management
         </a>
+        <ul class="nav-group-items">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.permissions.index') }}">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
+                    </svg>
+                    Permissions
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.users.index') }}">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+                    </svg>
+                    Users
+                </a>
+            </li>
+        </ul>
     </li>
 
     <li class="nav-item">
@@ -25,5 +43,5 @@
             {{ __('Posts') }}
         </a>
     </li>
-    
+
 </ul>
