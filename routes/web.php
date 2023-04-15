@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::resource('users', UserController::class);
         Route::resource('posts', PostController::class);
         Route::resource('permissions', PermissionController::class);
+        Route::resource('roles', RoleController::class);
 
     });
 });
