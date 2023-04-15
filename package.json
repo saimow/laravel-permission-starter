@@ -16,6 +16,7 @@
     "dependencies": {
         "@coreui/coreui": "^4.2.6",
         "@vitejs/plugin-vue": "^4.1.0",
+        "@vueform/multiselect": "^2.6.1",
         "vue": "^3.2.36",
         "vue-loader": "^17.0.1"
     }
