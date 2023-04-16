@@ -16,26 +16,36 @@ class PostController extends Controller
     }
 
     public function create(){
+        $this->authorize('post-create');
+
         return view('admin.posts.create');
     }
 
     public function store(StorePostRequest $request){
+        $this->authorize('post-create');
+
         auth()->user()->posts()->create($request->validated());
 
         return redirect()->route('admin.posts.index');
     }
 
     public function edit(Post $post){
+        $this->authorize('post-edit');
+
         return view('admin.posts.edit', ['post' => $post]);
     }
 
     public function update(Post $post, UpdatePostRequest $request){
+        $this->authorize('post-edit');
+
         $post->update($request->validated());
 
         return redirect()->route('admin.posts.index');
     }
 
     public function destroy(Post $post){
+        $this->authorize('post-delete');
+
         $post->delete();
 
         return response()->json([

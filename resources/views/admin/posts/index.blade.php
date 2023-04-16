@@ -21,9 +21,12 @@
 <div class="">
     <div class="mb-2 d-flex justify-content-between">
         <h2 class="m-0 align-self-end">Posts</h2>
-        <a href="{{route('admin.posts.create')}}" class="btn btn-primary btn-lg rounded-1 text-white">
-            <i class="bi bi-plus-lg"></i> Create Post
-        </a>
+        
+        @can('post-create')
+            <a href="{{route('admin.posts.create')}}" class="btn btn-primary btn-lg rounded-1 text-white">
+                <i class="bi bi-plus-lg"></i> Create Post
+            </a>
+        @endcan
     </div>
     <div class="card">
         <div class="card-body">

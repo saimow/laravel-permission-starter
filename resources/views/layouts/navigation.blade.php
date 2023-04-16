@@ -43,13 +43,15 @@
         </ul>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.posts.index') }}">
-            <svg class="nav-icon">
-                <use xlink:href="{{ asset('icons/coreui.svg#cil-short-text') }}"></use>
-            </svg>
-            {{ __('Posts') }}
-        </a>
-    </li>
+    @can('post-access')    
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.posts.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="{{ asset('icons/coreui.svg#cil-short-text') }}"></use>
+                </svg>
+                {{ __('Posts') }}
+            </a>
+        </li>
+    @endcan
 
 </ul>

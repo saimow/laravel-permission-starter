@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::put('/account', [AccountController::class, 'update'])->name('account');
     
         Route::resource('users', UserController::class);
-        Route::resource('posts', PostController::class);
+        Route::resource('posts', PostController::class)->middleware('can:post-access');
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RoleController::class);
 
