@@ -40,9 +40,7 @@ class RoleController extends Controller
 
         $role = Role::create(['name' => $request->name]);
 
-        if(isset($request->permissions)){
-            $role->givePermissionTo($request->permissions);
-        }
+        $role->givePermissionTo($request->permissions);
 
         return redirect()->route('admin.roles.index');
     }
@@ -76,9 +74,7 @@ class RoleController extends Controller
 
         $role->update(['name' => $request->name]);
 
-        if(isset($request->permissions)){
-            $role->syncPermissions($request->permissions);
-        }
+        $role->syncPermissions($request->permissions);
 
         return redirect()->route('admin.roles.index');
     }
