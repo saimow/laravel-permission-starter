@@ -15,6 +15,8 @@ class UserController extends Controller
     }
 
     public function edit(User $user){
+        $this->authorize('user-edit');
+
         $rolesData = Role::get();
         $userRolesData = $user->roles()->get();
 
@@ -32,6 +34,8 @@ class UserController extends Controller
     }
 
     public function update(User $user, Request $request){
+        $this->authorize('user-edit');
+
         $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email,'.$user->id],
@@ -49,6 +53,8 @@ class UserController extends Controller
     }
 
     public function destroy(User $user){
+        $this->authorize('user-delete');
+
         $user->delete();
 
         return response()->json([

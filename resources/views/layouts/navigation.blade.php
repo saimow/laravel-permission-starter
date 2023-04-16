@@ -32,14 +32,16 @@
                     Roles
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.users.index') }}">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
-                    </svg>
-                    Users
-                </a>
-            </li>
+            @can('user-access')    
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.users.index') }}">
+                        <svg class="nav-icon">
+                            <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+                        </svg>
+                        Users
+                    </a>
+                </li>
+            @endcan
         </ul>
     </li>
 
