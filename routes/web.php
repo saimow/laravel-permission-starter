@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::resource('users', UserController::class)->middleware('can:user-access');
         Route::resource('posts', PostController::class)->middleware('can:post-access');
         Route::resource('permissions', PermissionController::class);
-        Route::resource('roles', RoleController::class);
+        Route::resource('roles', RoleController::class)->middleware('can:role-access');
 
     });
 });

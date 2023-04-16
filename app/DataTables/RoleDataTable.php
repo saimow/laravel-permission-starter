@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -28,8 +29,12 @@ class RoleDataTable extends DataTable
             })
             ->addColumn('actions', function ($row) {
                 $html = "<div class='d-inline-flex'>";
-                $html .= "<a href=".route('admin.roles.edit', $row->id)." class='btn btn-success btn-sm me-1'><i class='bi bi-pencil-fill'></i></a>";
-                $html .= "<button data-id='".$row->id."' type='button' class='btn btn-danger btn-sm delete-confirmation' data-bs-toggle='modal' data-bs-target='#delete-confirmation'><i class='bi bi-trash3-fill'></i></button>";
+                if(Gate::allows('role-edit')){
+                    $html .= "<a href=".route('admin.roles.edit', $row->id)." class='btn btn-success btn-sm me-1'><i class='bi bi-pencil-fill'></i></a>";
+                }
+                if(Gate::allows('role-delete')){
+                    $html .= "<button data-id='".$row->id."' type='button' class='btn btn-danger btn-sm delete-confirmation' data-bs-toggle='modal' data-bs-target='#delete-confirmation'><i class='bi bi-trash3-fill'></i></button>";
+                }
                 $html .= "</div>";
                 return $html;
             })

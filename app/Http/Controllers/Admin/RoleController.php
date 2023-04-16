@@ -18,6 +18,8 @@ class RoleController extends Controller
     }
 
     public function create(){
+        $this->authorize('role-create');
+
         $permissionsData = Permission::get();
 
         $permissions = [];
@@ -29,6 +31,8 @@ class RoleController extends Controller
     }
 
     public function store(Request $request){
+        $this->authorize('role-create');
+
         $request->validate([
             'name' => 'required|max:255|unique:roles,name',
             'permissions.*' => 'required|max:255'
@@ -44,6 +48,8 @@ class RoleController extends Controller
     }
 
     public function edit(Role $role){
+        $this->authorize('role-edit');
+
         $permissionsData = Permission::get();
         $rolePermissionsData = $role->permissions()->get();
 
@@ -61,6 +67,8 @@ class RoleController extends Controller
     }
 
     public function update(Role $role, Request $request){
+        $this->authorize('role-edit');
+        
         $request->validate([
             'name' => 'required|max:255|unique:roles,name,'.$role->id,
             'permissions.*' => 'required|max:255'
@@ -76,6 +84,8 @@ class RoleController extends Controller
     }
 
     public function destroy(Role $role){
+        $this->authorize('role-delete');
+
         $role->delete();
 
         return response()->json([
