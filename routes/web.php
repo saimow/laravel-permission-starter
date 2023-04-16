@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group([
         'prefix' => 'admin',
         'as' => 'admin.',
+        'middleware' => 'can:admin-dashboard-access'
     ], function(){
     
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
