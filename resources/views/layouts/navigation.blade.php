@@ -16,14 +16,16 @@
             User Management
         </a>
         <ul class="nav-group-items">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.permissions.index') }}">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
-                    </svg>
-                    Permissions
-                </a>
-            </li>
+            @can('permission-access')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.permissions.index') }}">
+                        <svg class="nav-icon">
+                            <use xlink:href="{{ asset('icons/coreui.svg#cil-lock-locked') }}"></use>
+                        </svg>
+                        Permissions
+                    </a>
+                </li>
+            @endcan
             @can('role-access')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.roles.index') }}">
