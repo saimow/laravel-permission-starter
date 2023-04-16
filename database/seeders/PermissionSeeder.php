@@ -17,7 +17,6 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             'admin-dashboard-access',
-            'user-management-access',
             'permission-access',
             'role-access',
             'role-create',
